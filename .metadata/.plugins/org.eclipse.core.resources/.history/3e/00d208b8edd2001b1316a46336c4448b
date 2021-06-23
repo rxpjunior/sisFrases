@@ -1,0 +1,5 @@
+package sisFrases.Connection;
+
+public class SqliteConnection {
+
+}

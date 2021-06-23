@@ -1,0 +1,28 @@
+package sisFrases.DAO;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+
+import sisFrases.Connection.SqliteConnection;
+import sisFrases.Model.Autor;
+
+public class AutorDAO {
+	
+	private Connection connection = null;
+	
+	public boolean insere(Autor autor) {
+		connection = SqliteConnection.dbConnector();
+		try {
+			String sql = "Insert into Autor (autorNome) values (?)";
+			PreparedStatement pstm = connection.prepareStatement(sql);
+			pstm.setString(1,  autor.getAutorNome());
+			pstm.execute();
+			System.out.println("Inserido com sucesso");
+			return true;
+		}
+		catch(Exception e) {
+			System.out.println("Erro ao inserir autor");
+			return false;
+		}
+	}
+}
