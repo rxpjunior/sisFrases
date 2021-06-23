@@ -41,7 +41,6 @@ public class AutorDAO {
 			while(resultado.next()) {
 				autor.setAutorId(resultado.getInt("autorId"));
 				autor.setAutorNome(resultado.getString("autorNome"));
-				System.out.println("entrou");
 			}
 			return autor;
 			
@@ -52,7 +51,7 @@ public class AutorDAO {
 	}
 	
 	//Busca todos os autores 
-	public List<Autor> buscaPorId() {
+	public List<Autor> buscaTodos() {
 		try {
 			List<Autor> listaAutores= new ArrayList<Autor>(); 
 			sql = "Select * from autor";
@@ -67,8 +66,41 @@ public class AutorDAO {
 			return listaAutores;
 			
 		} catch (Exception e) {
-			System.out.println("Erro ao buscar autor");
+			System.out.println("Erro ao buscar autores");
 			return null;
+		}
+	}
+	
+	//Altera autor
+	public boolean altera(Autor autor) {
+		try {
+			sql = "Update autor set autorNome = ? where autorId = ?";
+			PreparedStatement pstm = connection.prepareStatement(sql);
+			pstm.setString(1,  autor.getAutorNome());
+			pstm.setInt(2, autor.getAutorId());
+			pstm.execute();
+			System.out.println("Alterado com sucesso");
+			return true;
+			
+		} catch (Exception e) {
+			System.out.println("Erro ao alterar autor");
+			return false;
+		}
+	}
+	
+	//Deleta autor
+	public boolean deleta(Integer id) {
+		try {
+			sql = "Delete from autor where autorId = ?";
+			PreparedStatement pstm = connection.prepareStatement(sql);
+			pstm.setInt(1, id);
+			pstm.execute();
+			System.out.println("Deletado com sucesso");
+			return true;
+			
+		} catch (Exception e) {
+			System.out.println("Erro ao deletar autor");
+			return false;
 		}
 	}
 }

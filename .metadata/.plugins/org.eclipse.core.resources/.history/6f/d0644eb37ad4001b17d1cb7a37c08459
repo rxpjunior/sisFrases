@@ -1,0 +1,35 @@
+package sisFrases.View;
+
+import sisFrases.DAO.AutorDAO;
+import sisFrases.Model.Autor;
+
+public class Main {
+
+	public static void main(String[] args) {
+		
+		//Inserir
+		Autor autor1 = new Autor();
+		Autor autor2 = new Autor();
+		autor1.setAutorNome("Simone3");
+		AutorDAO autorDao = new AutorDAO();
+		System.out.println(autorDao.insere(autor1));
+		
+		//Buscar por ID
+		System.out.println(autor2 = autorDao.buscaPorId(2));
+		System.out.println("Autor2 = "+autor2);
+		
+		//Buscar todos os Autores
+		System.out.println(autorDao.buscaTodos());
+		
+		//Altera autor
+		autor2.setAutorNome("Novo Nome");
+		autorDao.altera(autor2);
+		
+		//Deleta autor
+		autorDao.deleta(6);
+		
+		
+
+	}
+
+}
