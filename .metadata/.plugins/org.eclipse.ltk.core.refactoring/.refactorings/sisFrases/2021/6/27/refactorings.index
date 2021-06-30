@@ -1,0 +1,8 @@
+1624920372856	Rename field 'titulo'
+1624920386042	Rename field 'autor'
+1624922311040	Rename method 'getTitulo'
+1624922326209	Rename method 'setTitulo'
+1624922349139	Rename method 'getAutor'
+1624922363251	Rename method 'setAutor'
+1624988864289	Rename local variable 'autor'
+1624988903834	Rename local variable 'autor'

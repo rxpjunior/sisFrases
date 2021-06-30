@@ -1,0 +1,112 @@
+package sisFrases.View;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+import sisFrases.Connection.SqliteConnection;
+import sisFrases.DAO.AutorDAO;
+import sisFrases.Model.Autor;
+
+public class Main {
+
+	public static void main(String[] args) {
+		
+		Connection conn = new SqliteConnection().dbConnector();
+		
+		try {
+			PreparedStatement pst = conn.prepareStatement("--\r\n" + 
+					"-- File generated with SQLiteStudio v3.3.3 on qui jun 24 17:02:26 2021\r\n" + 
+					"--\r\n" + 
+					"-- Text encoding used: System\r\n" + 
+					"--\r\n" + 
+					"PRAGMA foreign_keys = off;\r\n" + 
+					"BEGIN TRANSACTION;\r\n" + 
+					"\r\n" + 
+					"-- Table: autor\r\n" + 
+					"DROP TABLE IF EXISTS autor;\r\n" + 
+					"\r\n" + 
+					"CREATE TABLE autor (\r\n" + 
+					"    autorId   INTEGER PRIMARY KEY AUTOINCREMENT\r\n" + 
+					"                      NOT NULL,\r\n" + 
+					"    autorNome VARCHAR UNIQUE\r\n" + 
+					"                      NOT NULL\r\n" + 
+					");\r\n" + 
+					"\r\n" + 
+					"\r\n" + 
+					"-- Table: frase\r\n" + 
+					"DROP TABLE IF EXISTS frase;\r\n" + 
+					"\r\n" + 
+					"CREATE TABLE frase (\r\n" + 
+					"    fraseId       INTEGER PRIMARY KEY AUTOINCREMENT\r\n" + 
+					"                          NOT NULL,\r\n" + 
+					"    fraseTexto    VARCHAR UNIQUE\r\n" + 
+					"                          NOT NULL,\r\n" + 
+					"    frase_livroId INTEGER REFERENCES livro (livroId) \r\n" + 
+					"                          NOT NULL\r\n" + 
+					");\r\n" + 
+					"\r\n" + 
+					"\r\n" + 
+					"-- Table: livro\r\n" + 
+					"DROP TABLE IF EXISTS livro;\r\n" + 
+					"\r\n" + 
+					"CREATE TABLE livro (\r\n" + 
+					"    livroId       INTEGER PRIMARY KEY AUTOINCREMENT\r\n" + 
+					"                          NOT NULL,\r\n" + 
+					"    livroTitulo   VARCHAR NOT NULL\r\n" + 
+					"                          UNIQUE,\r\n" + 
+					"    livro_autorId INTEGER REFERENCES autor (autorId) \r\n" + 
+					"                          NOT NULL\r\n" + 
+					");\r\n" + 
+					"\r\n" + 
+					"\r\n" + 
+					"COMMIT TRANSACTION;\r\n" + 
+					"PRAGMA foreign_keys = on;\r\n" + 
+					"");
+			pst.execute();
+			
+		} catch (Exception e) {
+			try {
+				PreparedStatement pst = conn.prepareStatement("Sqlite3 frasesDbTestes");
+				pst.execute();
+			} catch (Exception e2) {
+				System.out.println("Erro: "+e2);
+			}
+			
+		}
+		
+		
+		
+		//Inserir
+		Autor autor1 = new Autor();
+		autor1.setAutorNome("Juliana");
+		AutorDAO autorDao = new AutorDAO();
+		System.out.println("Validacao de insercao: "+autorDao.insere(autor1));
+		
+		autor1.setAutorNome("Juliano");
+		System.out.println("Validacao de insercao: "+autorDao.insere(autor1));
+		
+		//Buscar por ID
+		Autor autor2 = new Autor();
+		autor2 = autorDao.buscaPorId(2);
+		System.out.println("Retorno da busca pelo Id 2: "+autor2);
+		
+		
+		//Buscar todos os Autores
+		System.out.println("Retorno da busca por todos: "+autorDao.buscaTodos());
+		
+		//Altera autor
+		autor2.setAutorNome("Maxwell");
+		autorDao.altera(autor2);
+		System.out.println("Autor do ID 2 aterado: "+autorDao.buscaPorId(2));
+		
+		//Deleta autor
+		System.out.println("Verificação deleção autor 1"+autorDao.deleta(1));
+		System.out.println("Retorno da busca pelo ID 1 que acabou de ser excluido"+autorDao.buscaPorId(1));
+		
+		
+		
+
+	}
+
+}

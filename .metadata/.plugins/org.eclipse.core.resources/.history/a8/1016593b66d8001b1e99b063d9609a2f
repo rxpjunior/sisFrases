@@ -1,0 +1,48 @@
+package sisFrases.View;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+import sisFrases.Connection.SqliteConnection;
+import sisFrases.DAO.AutorDAO;
+import sisFrases.Model.Autor;
+
+public class Main {
+
+	public static void main(String[] args) {
+		
+		
+		//Inserir
+		Autor autor1 = new Autor();
+		autor1.setAutorNome("Silvana");
+		AutorDAO autorDao = new AutorDAO();
+		System.out.println("Validacao de insercao: "+autorDao.insere(autor1));
+		
+		autor1.setAutorNome("Soraia");
+		System.out.println("Validacao de insercao: "+autorDao.insere(autor1));
+		
+		//Buscar por ID
+		Autor autor2 = new Autor();
+		autor2 = autorDao.buscaPorId(3);
+		System.out.println("Retorno da busca pelo Id 3: "+autor2);
+		
+		
+		//Buscar todos os Autores
+		System.out.println("Retorno da busca por todos: "+autorDao.buscaTodos());
+		
+		//Altera autor
+		autor2.setAutorNome("Sergio");
+		autorDao.altera(autor2);
+		System.out.println("Autor do ID 3 aterado: "+autorDao.buscaPorId(3));
+		
+		//Deleta autor
+		System.out.println("Verificação deleção autor 2"+autorDao.deleta(2));
+		System.out.println("Retorno da busca pelo ID 2 que acabou de ser excluido"+autorDao.buscaPorId(2));
+		
+		
+		
+
+	}
+
+}

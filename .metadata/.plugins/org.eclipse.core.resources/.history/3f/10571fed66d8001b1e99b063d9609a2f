@@ -1,0 +1,69 @@
+package sisFrases.View;
+
+import sisFrases.DAO.AutorDAO;
+import sisFrases.DAO.LivroDAO;
+import sisFrases.Model.Autor;
+import sisFrases.Model.Livro;
+
+public class Main {
+
+	public static void main(String[] args) {
+		/*
+		//AUTORES
+		//Inserir
+		Autor autor1 = new Autor();
+		autor1.setAutorNome("Silvana");
+		AutorDAO autorDao = new AutorDAO();
+		System.out.println("Validacao de insercao: "+autorDao.insere(autor1));
+		
+		autor1.setAutorNome("Soraia");
+		System.out.println("Validacao de insercao: "+autorDao.insere(autor1));
+		
+		//Buscar por ID
+		Autor autor2 = new Autor();
+		autor2 = autorDao.buscaPorId(3);
+		System.out.println("Retorno da busca pelo Id 3: "+autor2);
+		
+		
+		//Buscar todos os Autores
+		System.out.println("Retorno da busca por todos: "+autorDao.buscaTodos());
+		
+		//Altera autor
+		autor2.setAutorNome("Sergio");
+		autorDao.altera(autor2);
+		System.out.println("Autor do ID 3 aterado: "+autorDao.buscaPorId(3));
+		
+		//Deleta autor
+		System.out.println("Verificação deleção autor 2"+autorDao.deleta(2));
+		System.out.println("Retorno da busca pelo ID 2 que acabou de ser excluido"+autorDao.buscaPorId(2));
+		*/
+		
+		//LIVROS
+		Livro livro1 = new Livro();
+		livro1.setTitulo("Biblia");
+		LivroDAO livroDao = new LivroDAO();
+		System.out.println("Validacao de insercao: "+livroDao.insere(livro1));
+		
+		livro1.setTitulo("Harpa");
+		System.out.println("Validacao de insercao: "+livroDao.insere(livro1));
+		
+		//Buscar por ID
+		Livro livro2 = new Livro();
+		livro2 = livroDao.buscaPorId(2);
+		System.out.println("Retorno da busca pelo Id 2: "+livro2);
+		
+		
+		//Buscar todos os livros
+		System.out.println("Retorno da busca por todos: "+livroDao.buscaTodos());
+		
+		//Altera livro
+		livro2.setTitulo("Cantor Cristão");
+		livroDao.altera(livro2);
+		System.out.println("Livro do ID 2 aterado: "+livroDao.buscaPorId(2));
+		
+		//Deleta autor
+		System.out.println("Verificação deleção livro 2"+livroDao.deleta(2));
+		System.out.println("Retorno da busca pelo ID 2 que acabou de ser excluido"+livroDao.buscaPorId(2));
+	}
+
+}

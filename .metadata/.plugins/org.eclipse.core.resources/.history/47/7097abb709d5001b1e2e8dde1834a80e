@@ -1,0 +1,53 @@
+package sisFrases.Testes;
+
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
+import org.junit.Test;
+
+import sisFrases.DAO.AutorDAO;
+import sisFrases.Model.Autor;
+
+public class AutorDAOTeste {
+
+	AutorDAO autorDao = new AutorDAO();
+	/*
+	@Test
+	public void testeInsere() {
+		boolean teste = true;
+		Autor autor = new Autor();
+		autor.setAutorNome("Mario");
+		assertTrue(autorDao.insere(autor));
+	}*/
+	
+	@Test
+	public void testeBuscaPorId() {
+	
+		Autor autor = new Autor();
+		autor = autorDao.buscaPorId(1);
+		System.out.println(autor.getAutorNome());
+		assertTrue("Mario".equals(autor.getAutorNome()));
+		
+		
+	}
+		
+				/*
+				
+				
+				
+				//Buscar todos os Autores
+				System.out.println("Retorno da busca por todos: "+autorDao.buscaTodos());
+				
+				//Altera autor
+				autor2.setAutorNome("Novo Nome");
+				autorDao.altera(autor2);
+				System.out.println("Autor do ID 9 aterado: "+autorDao.buscaPorId(9));
+				
+				//Deleta autor
+				autorDao.deleta(9);
+				System.out.println("Retorno da busca pelo ID 9 que acabou de ser excluido"+autorDao.buscaPorId(9));
+	*/
+	
+
+}

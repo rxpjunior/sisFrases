@@ -1,9 +1,0 @@
-package sisFrases.Dao;
-
-import java.sql.Connection;
-
-public class AutorDao {
-	Connection conn = null;
-	
-
-}
