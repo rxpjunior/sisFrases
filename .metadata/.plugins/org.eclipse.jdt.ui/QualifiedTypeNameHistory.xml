@@ -7,4 +7,5 @@
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="sisFrases.Connection.SqliteConnection"/>
 <fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
+<fullyQualifiedTypeName name="sisFrases.Model.Frase"/>
 </qualifiedTypeNameHistroy>

@@ -1,5 +1,5 @@
 package sisFrases.DAO;
 
-public class AutorDAO {
+public class FraseDAO {
 
 }

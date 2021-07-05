@@ -78,7 +78,6 @@ public class Main {
 		
 		
 		//FRASES
-		//Insere
 		Livro livro10 = livroDao.buscaPorId(2);
 		Frase frase1 = new Frase();
 		frase1.setFraseTexto("Aquele que perseverar até o fim será salvo");
@@ -89,22 +88,9 @@ public class Main {
 		FraseDAO fraseDao = new FraseDAO();
 		fraseDao.insere(frase1);
 		fraseDao.insere(frase2);
-		
-		//Busca Todos
 		System.out.println(fraseDao.buscaTodos());
 		
-		//Busca por ID
-		System.out.println(fraseDao.buscaPorId(2));
 		
-		//Altera
-		Frase frase3 = fraseDao.buscaPorId(2);
-		frase3.setFraseTexto("Texto Editado");
-		fraseDao.altera(frase3);
-		System.out.println(fraseDao.buscaPorId(2));
-		
-		//Deleta
-		fraseDao.deleta(2);
-		System.out.println(fraseDao.buscaTodos());
 	}
 
 }
