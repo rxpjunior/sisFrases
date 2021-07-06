@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import sisFrases.Connection.SqliteConnection;
-import sisFrases.Model.Autor;
 import sisFrases.Model.Frase;
 import sisFrases.Model.Livro;
 
@@ -114,29 +113,4 @@ public class FraseDAO {
 			return false;
 		}
 	}
-	
-	//Busca Frase por ID
-		public Frase buscaPost(int id) {
-			try {
-				Frase frase = new Frase();
-				Livro livro = new Livro();
-				Autor autor = new Autor();
-				sql = "SELECT f.fraseTexto, l.livroTitulo, a.autorNome from frase as f, autor as a, livro as l where a.autorId = l.livro_autorId and l.livroId = f.frase_livroId and f.fraseId = ?";
-				PreparedStatement pstm = connection.prepareStatement(sql);
-				pstm.setInt(1, id);
-				ResultSet resultado = pstm.executeQuery();
-				while(resultado.next()) {
-					frase.setFraseTexto(resultado.getString("fraseTexto"));
-					livro.setLivroTitulo(resultado.getString("livroTitulo"));
-					autor.setAutorNome(resultado.getString("autorNome"));
-					frase.setFraseLivro(livro);
-					livro.setLivroAutorId(autor);
-			}
-				return frase;
-				
-			} catch (Exception e) {
-				System.out.println("Erro ao buscar livro");
-				return null;
-			}
-		}
 }

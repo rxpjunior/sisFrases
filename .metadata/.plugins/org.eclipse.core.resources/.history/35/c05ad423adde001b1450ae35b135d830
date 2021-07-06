@@ -109,12 +109,6 @@ public class Main {
 		
 		//Busca para Post
 		System.out.println(fraseDao.buscaPost(3));
-		Frase frasePost = fraseDao.buscaPost(3);
-		String frase = frasePost.getFraseTexto();
-		String livro = frasePost.getFraseLivro().getLivroTitulo();
-		String autorP = frasePost.getFraseLivro().getLivroAutorId().getAutorNome();
-		System.out.println("Frase para postar:"+frase+", "+livro+","+autorP);
-		
 	}
 
 }
