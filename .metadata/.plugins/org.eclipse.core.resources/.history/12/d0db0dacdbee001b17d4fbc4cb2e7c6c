@@ -7,8 +7,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class TelaInicial {
 
@@ -48,12 +46,6 @@ public class TelaInicial {
 		frmSisfrases.getContentPane().setLayout(null);
 		
 		JButton brnAutores = new JButton("Autores");
-		brnAutores.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				TelaAutor telaAutor = new TelaAutor();
-				telaAutor.setVisible(true);
-			}
-		});
 		brnAutores.setBounds(10, 146, 89, 23);
 		frmSisfrases.getContentPane().add(brnAutores);
 		
