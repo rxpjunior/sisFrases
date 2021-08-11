@@ -1,0 +1,45 @@
+package sisFrases.Controller;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
+public class AutorController {
+	public JTable tabelaAutores;
+	private Connection connection;
+	
+	public JTable carregaAutores() {
+		
+			try {
+				String query = "select * from autor order by autorNome";
+				PreparedStatement pst = connection.prepareStatement(query);
+				ResultSet rs = pst.executeQuery();
+				
+				String[] colunasTabela = new String[]{ "ID", "NOME"}; //Nomes que quero visualizar no Table  
+				DefaultTableModel modeloTabela = new DefaultTableModel(null,colunasTabela);
+
+				if(rs != null) {
+				    while(rs.next()) {
+				        modeloTabela.addRow(new String[] {  
+				                rs.getString("autorid"),  //Nomes das colunas
+				                rs.getString("autorNome")
+				            }); 
+				    }
+				}
+				tabelaAutores.setModel(modeloTabela);
+				rs.close();
+				pst.close();
+				return tabelaAutores;
+					
+				}
+				catch(Exception er) {
+					JOptionPane.showMessageDialog(null, "Erro ao retornar dados do BD: "+ er);
+					return null;
+				}
+		
+	}
+
+}
