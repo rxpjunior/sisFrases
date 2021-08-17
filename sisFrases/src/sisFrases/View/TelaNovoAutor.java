@@ -14,12 +14,14 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import sisFrases.Connection.SqliteConnection;
+import javax.swing.JLabel;
 
 public class TelaNovoAutor extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtNomeAutor;
 	private Connection connection;
+	private JLabel lblNewLabel;
 
 	/**
 	 * Launch the application.
@@ -78,5 +80,9 @@ public class TelaNovoAutor extends JFrame {
 		});
 		btnSalvar.setBounds(276, 45, 89, 23);
 		contentPane.add(btnSalvar);
+		
+		lblNewLabel = new JLabel("Nome do autor");
+		lblNewLabel.setBounds(10, 21, 108, 14);
+		contentPane.add(lblNewLabel);
 	}
 }

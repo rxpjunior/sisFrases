@@ -157,6 +157,7 @@ public class TelaAutor extends JFrame {
 		
 		JButton btnApagarAutor = new JButton("Apagar Autor");
 		btnApagarAutor.setEnabled(false);
+		
 		// DELETAR AUTOR
 		btnApagarAutor.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

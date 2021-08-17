@@ -62,6 +62,12 @@ public class TelaInicial {
 		frmSisfrases.getContentPane().add(btnFrases);
 		
 		JButton btnLivros = new JButton("Livros");
+		btnLivros.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TelaLivro telaLivro = new TelaLivro();
+				telaLivro.setVisible(true);
+			}
+		});
 		btnLivros.setBounds(171, 146, 89, 23);
 		frmSisfrases.getContentPane().add(btnLivros);
 		

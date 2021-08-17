@@ -1,0 +1,134 @@
+package sisFrases.View;
+
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
+
+import sisFrases.Connection.SqliteConnection;
+
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.awt.event.ActionEvent;
+import javax.swing.JLabel;
+import javax.swing.JTable;
+import javax.swing.JScrollPane;
+
+public class TelaNovoLivro extends JFrame {
+
+	private JPanel contentPane;
+	private JTextField txtTituloLivro;
+	private Connection connection;
+	private JLabel lblNewLabel;
+	private JTable tblLivros;
+	private JLabel lblNewLabel_1;
+	private JScrollPane scrollPane;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					TelaNovoLivro frame = new TelaNovoLivro();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public TelaNovoLivro() {
+		setTitle("Novo Livro");
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setBounds(100, 100, 450, 300);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		txtTituloLivro = new JTextField();
+		txtTituloLivro.setColumns(10);
+		txtTituloLivro.setBounds(10, 228, 231, 20);
+		contentPane.add(txtTituloLivro);
+		
+		//CARREGAR OS LIVROS NA TABELA
+		try {
+			connection = SqliteConnection.dbConnector();
+			String query = "select * from livro order by livroTitulo";
+			PreparedStatement pst = connection.prepareStatement(query);
+			ResultSet rs = pst.executeQuery();
+			
+			String[] colunasTabela = new String[]{ "ID", "TITULO"}; //Nomes que quero visualizar no Table  
+			DefaultTableModel modeloTabela = new DefaultTableModel(null,colunasTabela);
+
+			if(rs != null) {
+			    while(rs.next()) {
+			        modeloTabela.addRow(new String[] {  
+			                rs.getString("livroId"),  //Nomes das colunas
+			                rs.getString("livroTitulo")
+			            }); 
+			    }
+			}
+			tblLivros.setModel(modeloTabela);
+			rs.close();
+			pst.close();
+			}
+			catch(Exception er) {
+				JOptionPane.showMessageDialog(null, "Erro ao retornar dados do BD: "+ er);
+			}
+		
+		
+		
+		//SALVAR LIVRO
+		JButton btnSalvar = new JButton("Salvar");
+		btnSalvar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String novoAutor = txtTituloLivro.getText();
+				try {
+					connection = new SqliteConnection().dbConnector();
+					String sql = "INSERT INTO Livro(livroTitulo) VALUES(?)";
+					PreparedStatement pstmt = connection.prepareStatement(sql); 
+			        pstmt.setString(1, novoAutor);
+			        pstmt.executeUpdate();
+			        JOptionPane.showMessageDialog(null, "Livro Salvo com Sucesso");
+			        dispose();
+			    }
+				catch(Exception er) {
+					JOptionPane.showMessageDialog(null, "Erro ao tentar salvar o livro: "+ er);
+					dispose();
+				}
+			}
+		});
+		btnSalvar.setBounds(276, 227, 89, 23);
+		contentPane.add(btnSalvar);
+		
+		lblNewLabel = new JLabel("T\u00EDtulo de Livro");
+		lblNewLabel.setBounds(10, 203, 97, 14);
+		contentPane.add(lblNewLabel);
+		
+		scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 38, 414, 140);
+		contentPane.add(scrollPane);
+		
+		table = new JTable();
+		scrollPane.setViewportView(table);
+		
+		lblNewLabel_1 = new JLabel("Selecione o autor do Livro");
+		lblNewLabel_1.setBounds(10, 11, 231, 14);
+		contentPane.add(lblNewLabel_1);
+	}
+}
