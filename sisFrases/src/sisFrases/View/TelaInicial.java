@@ -58,6 +58,12 @@ public class TelaInicial {
 		frmSisfrases.getContentPane().add(brnAutores);
 		
 		JButton btnFrases = new JButton("Frases");
+		btnFrases.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TelaFrase telaFrase = new TelaFrase();
+				telaFrase.setVisible(true);
+			}
+		});
 		btnFrases.setBounds(335, 146, 89, 23);
 		frmSisfrases.getContentPane().add(btnFrases);
 		

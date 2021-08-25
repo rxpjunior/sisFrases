@@ -2,6 +2,7 @@ package sisFrases.View;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.Image;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,6 +14,7 @@ import javax.swing.table.DefaultTableModel;
 
 import sisFrases.Connection.SqliteConnection;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -168,6 +170,12 @@ public class TelaLivro extends JFrame {
 		btnApagarLivro.setEnabled(false);
 		btnApagarLivro.setBounds(296, 195, 128, 23);
 		contentPane.add(btnApagarLivro);
+		
+		JLabel lblAutoresImg = new JLabel("");
+		Image img1 = new ImageIcon(this.getClass().getResource("/livro.png")).getImage();
+	    lblAutoresImg.setIcon(new ImageIcon(img1));
+		lblAutoresImg.setBounds(369, 11, 55, 52);
+		contentPane.add(lblAutoresImg);
 		
 		//EVENTO DE CLIQUE NA TABELA PARA SELECIONAR O ID DO LIVRO
 				tblLivros.addMouseListener(new MouseAdapter() {
