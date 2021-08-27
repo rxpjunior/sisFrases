@@ -8,6 +8,8 @@
 <fullyQualifiedTypeName name="sisFrases.Model.Frase"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="sisFrases.Controller.AutorController"/>
-<fullyQualifiedTypeName name="sisFrases.Connection.SqliteConnection"/>
 <fullyQualifiedTypeName name="java.awt.event.MouseEvent"/>
+<fullyQualifiedTypeName name="sisFrases.View.TelaNovaFrase"/>
+<fullyQualifiedTypeName name="javax.swing.JLabel"/>
+<fullyQualifiedTypeName name="sisFrases.Connection.SqliteConnection"/>
 </qualifiedTypeNameHistroy>

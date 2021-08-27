@@ -10,12 +10,11 @@ import sisFrases.Model.Autor;
 
 public class AutorDAO {
 	
-	private Connection connection = null;
+	private Connection connection = SqliteConnection.dbConnector();
 	String sql;
 	
 	//Inserindo no DB
 	public boolean insere(Autor autor) {
-		connection = SqliteConnection.dbConnector();
 		try {
 			sql = "Insert into Autor (autorNome) values (?)";
 			PreparedStatement pstm = connection.prepareStatement(sql);

@@ -12,18 +12,17 @@ import sisFrases.Model.Frase;
 import sisFrases.Model.Livro;
 
 public class FraseDAO {
-	private Connection connection = null;
+	
+	private Connection connection = SqliteConnection.dbConnector();
 	String sql;
 	
 	//Inserindo no DB
 	public boolean insere(Frase frase) {
-		connection = SqliteConnection.dbConnector();
 		try {
 			sql = "Insert into frase (fraseTexto, frase_livroId) values (?, ?)";
 			PreparedStatement pstm = connection.prepareStatement(sql);
 			pstm.setString(1, frase.getFraseTexto());
 			pstm.setInt(2, frase.getFraseLivro().getLivroId());
-			
 			pstm.execute();
 			System.out.println("Inserido com sucesso");
 			return true;
@@ -32,6 +31,7 @@ public class FraseDAO {
 			System.out.println("Erro ao inserir frase");
 			return false;
 		}
+		
 	}
 	
 	//Busca Frase por ID
@@ -116,27 +116,53 @@ public class FraseDAO {
 	}
 	
 	//Busca Frase por ID
-		public Frase buscaPost(int id) {
-			try {
-				Frase frase = new Frase();
-				Livro livro = new Livro();
-				Autor autor = new Autor();
-				sql = "SELECT f.fraseTexto, l.livroTitulo, a.autorNome from frase as f, autor as a, livro as l where a.autorId = l.livro_autorId and l.livroId = f.frase_livroId and f.fraseId = ?";
-				PreparedStatement pstm = connection.prepareStatement(sql);
-				pstm.setInt(1, id);
-				ResultSet resultado = pstm.executeQuery();
-				while(resultado.next()) {
-					frase.setFraseTexto(resultado.getString("fraseTexto"));
-					livro.setLivroTitulo(resultado.getString("livroTitulo"));
-					autor.setAutorNome(resultado.getString("autorNome"));
-					frase.setFraseLivro(livro);
-					livro.setLivroAutorId(autor);
-			}
-				return frase;
-				
-			} catch (Exception e) {
-				System.out.println("Erro ao buscar livro");
-				return null;
-			}
+	public Frase buscaPost(int id) {
+		try {
+			Frase frase = new Frase();
+			Livro livro = new Livro();
+			Autor autor = new Autor();
+			sql = "SELECT f.fraseTexto, l.livroTitulo, a.autorNome from frase as f, autor as a, livro as l where a.autorId = l.livro_autorId and l.livroId = f.frase_livroId and f.fraseId = ?";
+			PreparedStatement pstm = connection.prepareStatement(sql);
+			pstm.setInt(1, id);
+			ResultSet resultado = pstm.executeQuery();
+			while(resultado.next()) {
+				frase.setFraseTexto(resultado.getString("fraseTexto"));
+				livro.setLivroTitulo(resultado.getString("livroTitulo"));
+				autor.setAutorNome(resultado.getString("autorNome"));
+				frase.setFraseLivro(livro);
+				livro.setLivroAutorId(autor);
 		}
+			return frase;
+			
+		} catch (Exception e) {
+			System.out.println("Erro ao buscar frase");
+			return null;
+		}
+	}
+	
+	//Busca Frase por ID e retorna o post em forma de String
+	public String buscaPostString(int id) {
+		try {
+			Frase frase = new Frase();
+			Livro livro = new Livro();
+			Autor autor = new Autor();
+			sql = "SELECT f.fraseTexto, l.livroTitulo, a.autorNome from frase as f, autor as a, livro as l where a.autorId = l.livro_autorId and l.livroId = f.frase_livroId and f.fraseId = ?";
+			PreparedStatement pstm = connection.prepareStatement(sql);
+			pstm.setInt(1, id);
+			ResultSet resultado = pstm.executeQuery();
+			while(resultado.next()) {
+				frase.setFraseTexto(resultado.getString("fraseTexto"));
+				livro.setLivroTitulo(resultado.getString("livroTitulo"));
+				autor.setAutorNome(resultado.getString("autorNome"));
+				frase.setFraseLivro(livro);
+				livro.setLivroAutorId(autor);
+			}
+		String post = frase.getFraseTexto()+" - "+frase.getFraseLivro().getLivroTitulo()+" - "+frase.getFraseLivro().getLivroAutorId().getAutorNome(); 
+		return post;
+		
+	} catch (Exception e) {
+		System.out.println("Erro ao buscar frase: "+e);
+		return null;
+	}
+	}
 }

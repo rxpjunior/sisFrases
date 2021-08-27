@@ -11,12 +11,12 @@ import sisFrases.Model.Autor;
 import sisFrases.Model.Livro;
 
 public class LivroDAO {
-	private Connection connection = null;
+	
+	private Connection connection = SqliteConnection.dbConnector();
 	String sql;
 	
 	//Inserindo no DB
 	public boolean insere(Livro livro) {
-		connection = SqliteConnection.dbConnector();
 		try {
 			sql = "Insert into Livro (livroTitulo, livro_autorId) values (?, ?)";
 			PreparedStatement pstm = connection.prepareStatement(sql);

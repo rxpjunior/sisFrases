@@ -4,6 +4,7 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="Utils"/>
 	<classpathentry kind="src" path="Imagens"/>
+	<classpathentry kind="src" path="bd"/>
 	<classpathentry kind="lib" path="Utils/sqlite-jdbc-3.34.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
