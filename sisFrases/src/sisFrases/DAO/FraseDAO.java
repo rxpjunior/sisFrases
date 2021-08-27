@@ -24,7 +24,7 @@ public class FraseDAO {
 			pstm.setString(1, frase.getFraseTexto());
 			pstm.setInt(2, frase.getFraseLivro().getLivroId());
 			pstm.execute();
-			System.out.println("Inserido com sucesso");
+			System.out.println("Frase inserida com sucesso");
 			return true;
 		}
 		catch(Exception e) {
@@ -52,7 +52,7 @@ public class FraseDAO {
 			return frase;
 			
 		} catch (Exception e) {
-			System.out.println("Erro ao buscar livro");
+			System.out.println("Erro ao buscar frase");
 			return null;
 		}
 	}
@@ -76,7 +76,7 @@ public class FraseDAO {
 			return listafrases;
 			
 		} catch (Exception e) {
-			System.out.println("Erro ao buscar livro");
+			System.out.println("Erro ao buscar frase");
 			return null;
 		}
 	}
@@ -106,7 +106,7 @@ public class FraseDAO {
 			PreparedStatement pstm = connection.prepareStatement(sql);
 			pstm.setInt(1, id);
 			pstm.execute();
-			System.out.println("Deletado com sucesso");
+			System.out.println("Frase deletada com sucesso");
 			return true;
 			
 		} catch (Exception e) {

@@ -20,7 +20,7 @@ public class AutorDAO {
 			PreparedStatement pstm = connection.prepareStatement(sql);
 			pstm.setString(1,  autor.getAutorNome());
 			pstm.execute();
-			System.out.println("Inserido com sucesso");
+			System.out.println("Autor inserido com sucesso");
 			return true;
 		}
 		catch(Exception e) {
@@ -78,7 +78,7 @@ public class AutorDAO {
 			pstm.setString(1,  autor.getAutorNome());
 			pstm.setInt(2, autor.getAutorId());
 			pstm.execute();
-			System.out.println("Alterado com sucesso");
+			System.out.println("Autor alterado com sucesso");
 			return true;
 			
 		} catch (Exception e) {
@@ -94,7 +94,7 @@ public class AutorDAO {
 			PreparedStatement pstm = connection.prepareStatement(sql);
 			pstm.setInt(1, id);
 			pstm.execute();
-			System.out.println("Deletado com sucesso");
+			System.out.println("Autor deletado com sucesso");
 			return true;
 			
 		} catch (Exception e) {

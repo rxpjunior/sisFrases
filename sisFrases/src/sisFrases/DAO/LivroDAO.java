@@ -24,7 +24,7 @@ public class LivroDAO {
 			pstm.setInt(2,  livro.getLivroAutorId().getAutorId());
 			
 			pstm.execute();
-			System.out.println("Inserido com sucesso");
+			System.out.println("Livro inserido com sucesso");
 			return true;
 		}
 		catch(Exception e) {
@@ -75,7 +75,7 @@ public class LivroDAO {
 			return listaLivros;
 			
 		} catch (Exception e) {
-			System.out.println("Erro ao buscar livros"+e);
+			System.out.println("Erro ao buscar livros");
 			return null;
 		}
 	}
@@ -89,11 +89,11 @@ public class LivroDAO {
 			pstm.setInt(2, livro.getLivroAutorId().getAutorId());
 			pstm.setInt(3, livro.getLivroId());
 			pstm.execute();
-			System.out.println("Alterado com sucesso");
+			System.out.println("Livro alterado com sucesso");
 			return true;
 			
 		} catch (Exception e) {
-			System.out.println("Erro ao alterar livro"+e);
+			System.out.println("Erro ao alterar livro");
 			return false;
 		}
 	}
@@ -105,7 +105,7 @@ public class LivroDAO {
 			PreparedStatement pstm = connection.prepareStatement(sql);
 			pstm.setInt(1, id);
 			pstm.execute();
-			System.out.println("Deletado com sucesso");
+			System.out.println("Livro deletado com sucesso");
 			return true;
 			
 		} catch (Exception e) {
